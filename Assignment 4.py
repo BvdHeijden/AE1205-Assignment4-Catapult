@@ -48,7 +48,7 @@ while phi_tab[-1]<phi_stop:
     theta=(pi/2)-alpha-phi
     
     F_g=m*g*cos(phi)
-    F_elas=cos(phi)*Ke*max(0,L_elas-L0)
+    F_elas=cos(theta)*Ke*max(0,L_elas-L0)
     
     a_tang=(F_elas-F_g)/m
     v_tang=v+a_tang*dt
@@ -67,11 +67,13 @@ plt.plot(t_tab,v_tab)
 vx_tab=[v_tab[-1]*sin(phi_stop)]
 vy_tab=[v_tab[-1]*cos(phi_stop)]
 
-
-    
-    
-    
-    
-    
-    
+#while y_tab[-1]>0:
+#    t=t_tab[-1]
+#    x=x_tab[-1]
+#    y=y_tab[-1]
+#    vx=vx_tab[-1]
+#    vy=vy_tab[-1]
+#    
+#    theta=arctan(vy/vx)
+#    
     
