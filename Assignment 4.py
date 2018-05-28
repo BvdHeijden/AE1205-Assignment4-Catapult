@@ -63,6 +63,11 @@ while phi_tab[-1]<phi_stop:
     
 print(v_tab[-1])
 
+#DEBUG
+balt=[0]
+dx_tab=[0]
+dy_tab=[0]
+
 #loop for ballistic phase
 while y_tab[-1]>0:
     t=t_tab[-1]
@@ -75,13 +80,18 @@ while y_tab[-1]>0:
     vy=v*sin(theta)
     
     F_d=Cd*.5*rho_air*(v**2)*s
-    F_d_x=-F_d*cos(theta)
-    F_d_y=-F_d*sin(theta)
+    F_d_x=F_d*cos(theta+pi)
+    F_d_y=F_d*sin(theta+pi)
+    
+    #DEBUG
+    balt.append(balt[-1]+dt)
+    dx_tab.append(F_d_x)
+    dy_tab.append(F_d_y)
     
     F_g=m*g
     
-    ax=F_d_x
-    ay=F_d_y-F_g
+    ax=(F_d_x)/m
+    ay=(F_d_y-F_g)/m
     
     vx=vx+ax*dt
     vy=vy+ay*dt    
