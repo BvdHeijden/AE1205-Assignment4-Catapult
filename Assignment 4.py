@@ -13,9 +13,31 @@ g=9.81
 v_init=0.
 dt=0.001
 phi_start=0.
-phi_stop=60.
+phi_stop=56.
 
-#Call Catapult algorithm from Catapult.py
-t,x,y,v,theta,a=Catapult(m,rho_rock,rho_air,Cd,R,L0,Ke,g,v_init,dt,phi_start,phi_stop)
 
-plt.plot(x,y)
+def plot_multiple_graphs():
+    for i in range(50,61,1):
+        phi_stop=i
+        lbl=str(phi_stop) + ' Degrees'
+        
+        #Call Catapult algorithm from Catapult.py
+        t,x,y,v,theta,a=Catapult(m,rho_rock,rho_air,Cd,R,L0,Ke,g,v_init,dt,phi_start,phi_stop)
+        plt.plot(x,y,label=lbl)
+    
+    plt.legend()
+
+
+def minimum_Ke(startpoint,step,goal):
+    Ke=startpoint    
+    x_final=0
+    
+    while x_final<goal:
+        Ke+=step
+        #Call Catapult algorithm from Catapult.py
+        t,x,y,v,theta,a=Catapult(m,rho_rock,rho_air,Cd,R,L0,Ke,g,v_init,dt,phi_start,phi_stop)
+        
+        x_final=x[-1]
+
+    print(Ke)
+    print(x_final)
